@@ -51,8 +51,11 @@ const getEmbeds = async () => {
             embeds.forEach((embed) => {
                 const chapter = embed.embed_footer.description.split('/');
                 const chapterName = chapter[chapter.length - 2];
-                const date = moment(embed.schendule_time);
+                
+                // Cambiar a moment.utc
+                const date = moment.utc(embed.schendule_time);
                 const scheduleTime = date.format("DD-MM-YYYY HH:mm:ss");
+                
                 const embedLi = document.createElement('li');
                 embedLi.className = "flex rounded-lg p-2 bg-[#2b2d31] dark:bg-gray-100 border border-slate-200/30 transition-colors duration-300 hover:border-slate-200 group mb-2";
                 embedLi.innerHTML = `
@@ -75,7 +78,6 @@ const getEmbeds = async () => {
                             </div>
                         </div>
                     </div>
-
                     <div class="pl-2 my-auto flex gap-2.5 md:gap-2">
                         <a href="/embed-preview/${embed.id}" class="view-item text-xl md:px-2 transition-opacity">
                             <svg class="w-5 h-5 md:w-6 md:h-6 text-slate-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"><path d="M2.036 12.322a1 1 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178c.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178"/><path d="M15 12a3 3 0 1 1-6 0a3 3 0 0 1 6 0"/></g></svg>
