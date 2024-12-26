@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Webhook Interface</title>
+    <link rel="stylesheet" href="/css/output.css">
+</head>
+<body class="bg-[#313338] text-gray-100 min-h-screen">
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <!-- Sidebar -->
+        <%- include('./sections/sidebarSection.ejs') %>
+
+        <!-- Section Content -->
+        <div class="w-full flex flex-col lg:grid grid-cols-10">
+            <!-- Main Content -->
+            <div class="col-span-6 flex-1 p-6">
+                <!-- Top Buttons -->
+                <div class="flex gap-3 mb-6">
+                    <button type="button" class="px-4 py-2 bg-[#2b2d31] hover:bg-[#404249] rounded-md">Backups</button>
+                    <button type="button" id="clearAll" class="px-4 py-2 bg-[#2b2d31] hover:bg-[#404249] rounded-md">Clear All</button>
+                    <button type="button" class="px-4 py-2 bg-[#2b2d31] hover:bg-[#404249] rounded-md">Share Message</button>
+                </div>
+    
+                <form id="webhookForm" class="space-y-6">
+                    <!-- Webhook URL Section -->
+                    <div>
+                        <label class="block text-sm font-medium mb-2">URL del Webhook</label>
+                        <div class="flex gap-2">
+                            <input 
+                                type="url" 
+                                name="discordWebhookUrl"
+                                value="<%= discordEmbed.webhook_url %>"
+                                placeholder="https://discord.com/api/webhooks/..." 
+                                class="flex-1 bg-[#1e1f22] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                required
+                            >
+                            <button type="submit" class="px-4 py-2 bg-[#2b2d31] hover:bg-[#404249] rounded-md">
+                                Enviar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Hidden Input -->
+                    <input type="hidden" name="currentPage" value="preview">
+                    <input type="hidden" name="discordEmbedId" value="<%= discordEmbed.id %>">
+
+                    <!-- Dicord Title Input -->
+                    <div>
+                        <label class="block text-sm font-medium mb-2">
+                            Nombre del Embed
+                        </label>
+                        <div class="flex gap-2">
+                            <input 
+                                type="text" 
+                                name="discordTitle"
+                                value="<%= discordEmbed.title %>"
+                                placeholder="Nombre de Novela" 
+                                class="flex-1 bg-[#1e1f22] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            >
+                        </div>
+                    </div>
+        
+                    <!-- DateTime Input Section -->
+                    <div>
+                        <label class="block text-sm font-medium mb-2">
+                            Fecha de Programación
+                        </label>
+                        <div class="flex gap-2">
+                            <input 
+                                type="datetime-local" 
+                                name="schenduleTime"
+                                value="<%= scheduledTime %>"
+                                class="flex-1 bg-[#1e1f22] text-white rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                                id="dateTimeInput"
+                            />
+                        </div>
+                    </div>
+        
+                    <!-- Content Section -->
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="block text-sm font-medium">
+                                Contenido
+                            </label>
+                            <span class="text-xs text-gray-400" id="contentCounter">0/2000</span>
+                        </div>
+                        <textarea 
+                            name="discordDescription"
+                            class="w-full h-32 bg-[#1e1f22] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                            id="content"
+                            maxlength="2000"
+                        ><%= discordEmbed.description %></textarea>
+                    </div>
+
+                    <!-- Embed Body Section -->
+                    <div>
+                        <details class="bg-[#2b2d31] border border-slate-400/20 rounded-lg">
+                            <summary class="cursor-pointer p-4 font-medium">Embed Body</summary>
+                            <div class="p-4 space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Title</label>
+                                    <input 
+                                        type="text" 
+                                        name="embed1Title"
+                                        value="<%= discordEmbed.embed_body.title %>"
+                                        class="w-full bg-[#1e1f22] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Body</label>
+                                    <textarea 
+                                        name="embed1Body"
+                                        class="w-full h-24 bg-[#1e1f22] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                                    ><%= discordEmbed.embed_body.description %></textarea>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Image URL</label>
+                                    <input 
+                                        type="url" 
+                                        name="embed1ImageUrl"
+                                        value="<%= discordEmbed.embed_body.image_url %>"
+                                        class="w-full bg-[#1e1f22] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    >
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+                    
+                    <!-- Embed Footer Section -->
+                    <div>
+                        <details class="bg-[#2b2d31] border border-slate-400/20 rounded-lg">
+                            <summary class="cursor-pointer p-4 font-medium">Embed Footer</summary>
+                            <div class="p-4 space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Title</label>
+                                    <input 
+                                        type="text" 
+                                        name="embed2Title"
+                                        value="<%= discordEmbed.embed_footer.title %>"
+                                        class="w-full bg-[#1e1f22] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    >
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Body</label>
+                                    <textarea 
+                                        name="embed2Body"
+                                        class="w-full h-24 bg-[#1e1f22] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                                    ><%= discordEmbed.embed_footer.description %></textarea>
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+        
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button type="submit" class="hidden lg:inline-block px-4 py-2 bg-[#5865f2] hover:bg-[#4752c4] text-white rounded-md" id="submitBtn">
+                            Actualizar Embed
+                        </button>
+                    </div>
+                </form>
+            </div>
+    
+            <!-- Preview Section -->
+            <%- include('./sections/previewSection.ejs') %>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="/js/navbar.js"></script>
+    <script src="/js/preview.js"></script>
+    <script src="/js/embedForm.js" type="module"></script>
+</body>
+</html>

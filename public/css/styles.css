@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global Styles */
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    @apply w-2.5 bg-transparent
+}
+ 
+::-webkit-scrollbar-thumb {
+    @apply bg-gray-500 rounded-md
+}
+ 
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-200
+}
+
+/* Preview Description */
+#preview p > br {
+    @apply my-1
+}
+
+/* Previw Link */
+#embed2BodyPreview p {
+    @apply whitespace-pre-line block text-wrap break-all md:break-words
+}
+
+#embed2BodyPreview p a {
+    @apply inline-block max-w-full
+}
+
+/* Input Date */
+input[type="datetime-local"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    @apply invert cursor-pointer
+}

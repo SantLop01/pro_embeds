@@ -1,0 +1,34 @@
+<div class="min-w-56 flex flex-row gap-2 lg:block bg-[#2b2d31] p-4 transition-all duration-500" id="sidebar">
+    <div class="w-full flex items-center lg:mb-6" id="logoWrap">
+        <img src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Logo" class="w-8 h-8 transition-all duration-500 rounded-full cursor-pointer"  id="hide-sidebar">
+        <span class="font-semibold ml-2" id="headerText">
+            Pro. Embeds
+        </span>
+    </div>
+    <nav class="hidden lg:block space-y-1" id="headerNav">
+        <a href="/home" class="block px-2 py-1 rounded <%= name === 'Home' ? 'bg-[#404249]' : '' %> hover:bg-[#404249] text-gray-300">
+            Crear Embed
+        </a>
+        <a href="/schendules" class="block px-2 py-1 rounded <%= name === 'Schendules' ? `bg-[#404249]` : '' %> hover:bg-[#404249] text-gray-300">
+            Embeds Programados
+        </a>
+        <a href="#" class="block px-2 py-1 rounded hover:bg-[#404249] text-gray-300">
+            Configuración
+        </a>
+    </nav>
+
+    <!-- navbar with icons -->
+    <nav class="w-full flex flex-row items-center justify-end lg:flex-col gap-2 lg:hidden" id="headerNav2">
+        <a href="/home" class="block px-2 py-1 rounded <%= name === 'Home' ? 'bg-[#404249]' : '' %> hover:bg-[#404249] text-gray-300">
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 12h8m-4-4v8"/></g></svg>
+        </a>
+
+        <a href="/schendules" class="block px-2 py-1 rounded <%= name === 'Schendules' ? `bg-[#404249]` : '' %> hover:bg-[#404249] text-gray-300">
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><path d="M8 2v4m8-4v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></g></svg>
+        </a>
+
+        <a href="/#" class="block px-2 py-1 rounded hover:bg-[#404249] text-gray-300">
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><path d="M20 7h-9m3 10H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></g></svg>
+        </a>
+    </nav>
+</div>

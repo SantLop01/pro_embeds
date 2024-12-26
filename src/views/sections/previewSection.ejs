@@ -1,0 +1,44 @@
+<!-- Preview Section -->
+<div class="col-span-4 p-4 border-t-2 lg:border-t-0 lg:border-l-2 border-[#1e1f22]" id="previewSection">
+    <div class="bg-[#313338] rounded-lg p-4">
+        <div class="flex flex-col items-start">
+            <div class="flex items-center gap-2">
+                <img src="https://cdn.discordapp.com/embed/avatars/0.png" class="w-6 h-6 rounded-full" alt="Bot Avatar">
+                <span class="font-medium line-clamp-1">Pancho Actualizaciones</span>
+                <span class="bg-[#5865f2] text-xs px-1 rounded">BOT</span>
+            </div>
+            <!-- Content -->
+            <div>
+                <div class="mt-1 break-all md:break-words space-y-1" id="preview">
+                    ¡Hola, bienvenido a Pro Embeds! La forma más fácil de personalizar tus mensajes de Discord en Pancho Translations.
+                </div>
+            </div>
+
+            <!-- First Embed Preview -->
+            <div id="embed1Preview" class="w-full grid place-self-start mt-1 text-left border-l-4 border-[#fcc82e] rounded-[4px] hidden">
+                <div class="inline-grid px-4 py-3 bg-[#2b2d31] rounded-lg">
+                    <span class="font-bold" id="embed1TitlePreview"></span>
+                    <p class="mt-2" id="embed1BodyPreview"></p>
+                    <img id="embed1ImagePreview" class="mt-4 max-h-[350px] rounded-md hidden" alt="Embed 1 Image">
+                </div>
+            </div>
+
+            <!-- Second Embed Preview -->
+            <div id="embed2Preview" class="w-full flex flex-start mt-1 text-left border-l-4 border-[#fcc82e] rounded-[4px] overflow-hidden hidden">
+                <div class="w-full flex flex-col px-4 py-3 bg-[#2b2d31] rounded-lg">
+                    <span class="w-fit font-bold" id="embed2TitlePreview"></span>
+                    <div class="mt-2 underline text-blue-400 text-wrap" id="embed2BodyPreview"></div>
+                    <img id="embed2ImagePreview" class="mt-4 max-h-[350px] rounded-md hidden" alt="Embed 2 Image">
+                </div>
+            </div>
+        </div>
+
+        <% if (name != 'Schendules') { %>
+            <div class="text-center mt-4">
+                <button type="button" class="inline-block lg:hidden px-4 py-2 bg-[#5865f2] hover:bg-[#4752c4] text-white rounded-md" id="mobileSubmit">
+                    <%= name === 'Preview' ? 'Actualizar Embed' : 'Programar Embed' %>
+                </button>
+            </div>
+        <% } %>
+    </div>
+</div>
