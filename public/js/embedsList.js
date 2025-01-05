@@ -52,8 +52,8 @@ const getEmbeds = async () => {
                 const chapter = embed.embed_footer.description.split('/');
                 const chapterName = chapter[chapter.length - 2];
                 
-                // Cambiar a moment.utc
-                const date = moment.utc(embed.schendule_time);
+                // Cambiar a moment
+                const date = moment(embed.schendule_time);
                 const scheduleTime = date.format("DD-MM-YYYY HH:mm:ss");
                 
                 const embedLi = document.createElement('li');
